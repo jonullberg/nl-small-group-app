@@ -1,0 +1,18 @@
+'use strict';
+
+module.exports = {
+	entry: './js/components/Main.js',
+	output: 'public/bundle.js',
+	module: {
+		loaders: [
+			{
+				test: /\.jsx?%/,
+				exclude: /(node_modules)/,
+				loader: 'babel',
+				query: {
+					presets: ['react', 'es2015']
+				}
+			}
+		]
+	}
+}
