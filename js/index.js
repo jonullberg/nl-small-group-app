@@ -1,34 +1,19 @@
-var app = app || {};
+'use strict';
 
-(function() {
-	'use strict';
-	var LifeGroupApp = React.createClass({
-		render: function () {
-			var main = (
-				<section className="main">
-					<input
-						className="toggle-all"
-						type="checkbox"
-						onChange={this.toggleAll}
-						checked={activeTodoCount === 0}
-					/>
-					<ul className="todo-list">
-						{todoItems}
-					</ul>
-				</section>
-			);
+const React = require('react');
+const { render } = require('react-dom');
+const { Provider } = require('react-redux');
+const { createStore } = require('redux');
 
-			return (
-				<div class="todoApplication">
-					{main}
-				</div>
-			);
-		}
-	});
-	function render() {
-		React.render(
-			<LifeGroupApp />,
-			document.getElementById('lifeGroupApp'));
-	}
-	render();
-})();
+
+const Main = require('./components/Main');
+const reducers = require('./reducers/reducers');
+
+let store = createStore(reducers);
+
+render(
+	<Provider store={store}>
+		<Main />
+	</Provider>, 
+	document.getElementById('signUpApp')
+);
